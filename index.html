@@ -28,7 +28,17 @@
               },
             },
             animation: {
-              "spin-slow": "spin 12s linear infinite",
+              "spin-slow": "spin 10s linear infinite",
+              gradient: "gradient 8s linear infinite",
+            },
+            backgroundSize: {
+              "300%": "300%",
+            },
+            keyframes: {
+              gradient: {
+                "0%, 100%": { backgroundPosition: "0% 50%" },
+                "50%": { backgroundPosition: "100% 50%" },
+              },
             },
           },
         },
@@ -114,76 +124,156 @@
 
       // 2. Hero Section (Optimized for Performance)
       const Hero = () => {
-        const cartoonImageUrl =
-          "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/People/Technologist.png";
+        const cartoonImageUrl = "./image2.png"; // ตรวจสอบ path รูปภาพ
 
         return (
           <section
             id="hero"
-            className="min-h-screen flex items-center pt-24 pb-10 relative overflow-hidden">
-            {/* Background Blobs (Reduced Blur for Performance) */}
-            <div className="absolute top-20 right-0 w-80 h-80 bg-purple-600/10 rounded-full blur-3xl -z-10"></div>
-            <div className="absolute bottom-20 left-10 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl -z-10"></div>
+            className="min-h-screen flex items-center pt-24 pb-10 relative overflow-hidden bg-slate-900">
+            {/* --- 1. Background Effects (เพิ่มพื้นหลังให้มีมิติ) --- */}
+            {/* Grid Pattern */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid md:grid-cols-2 gap-12 items-center">
-              {/* Left Column */}
+            {/* Ambient Glows */}
+            <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-blue-500/20 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2"></div>
+            <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-purple-500/20 rounded-full blur-[100px] translate-x-1/2 translate-y-1/2"></div>
+
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid md:grid-cols-2 gap-12 items-center relative z-10">
+              {/* --- Left Column - Text Area --- */}
               <motion.div
-                initial={{ opacity: 0, x: -30 }}
+                initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
                 className="text-left w-full">
-                <h2 className="text-lg text-brand-primary font-semibold tracking-wide uppercase mb-4">
-                  <i className="fas fa-code mr-2"></i>Full Stack Developer
-                </h2>
-                <h1 className="text-5xl md:text-6xl font-extrabold text-white leading-tight mb-6">
-                  สวัสดีครับ ผมชื่อ
-                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 mt-2 leading-normal">
+                {/* Role Badge */}
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-medium mb-6">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                  </span>
+                  Full Stack Developer
+                </div>
+
+                <h1 className="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-6 tracking-tight">
+                  สวัสดีครับ ผมชื่อ <br />
+                  {/* Animated Gradient Text */}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 animate-gradient bg-300%">
                     ขจรศักดิ์ ลี้พงษ์กุล
                   </span>
                 </h1>
-                <p className="text-lg text-gray-400 max-w-lg font-light leading-relaxed mb-8">
+
+                <p className="text-lg md:text-xl text-gray-400 max-w-lg font-light leading-relaxed mb-10">
                   นักศึกษาวิทยาการคอมพิวเตอร์ ผู้หลงใหลในการเขียนโค้ด
-                  มีความกระตือรือร้นที่จะสร้างสรรค์เว็บแอปพลิเคชันที่มีประสิทธิภาพ
-                  พร้อมเรียนรู้สิ่งใหม่และเติบโตในสายงาน Full Stack Development
+                  เปลี่ยนไอเดียให้กลายเป็น{" "}
+                  <span className="text-gray-200 font-medium">
+                    Web Application
+                  </span>{" "}
+                  ที่ใช้งานได้จริง พร้อมเรียนรู้เทคโนโลยีใหม่ๆ เสมอ
                 </p>
 
+                {/* Buttons */}
                 <div className="flex flex-wrap gap-4">
                   <motion.a
                     href="#projects"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="px-8 py-3 bg-brand-primary hover:bg-blue-600 text-white rounded-full font-bold shadow-lg shadow-blue-500/20 transition-all flex items-center">
-                    ดูผลงาน <i className="fas fa-arrow-right ml-2 text-sm"></i>
+                    className="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white rounded-full font-bold shadow-lg shadow-blue-500/25 transition-all flex items-center gap-2">
+                    ดูผลงาน <i className="fas fa-arrow-right text-sm"></i>
                   </motion.a>
-                  <a
+                  <motion.a
                     href="#contact"
-                    className="px-8 py-3 border border-gray-600 text-gray-300 rounded-full font-bold transition-all hover:bg-gray-800 hover:text-white hover:border-gray-500">
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-8 py-4 bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/30 text-gray-300 hover:text-white rounded-full font-bold transition-all">
                     ติดต่อ
-                  </a>
+                  </motion.a>
+                </div>
+
+                {/* Tech Stack Icons (Optional Decoration) */}
+                <div className="mt-12 flex items-center gap-4 text-gray-500 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                  <span className="text-sm uppercase tracking-widest">
+                    Tech Stack:
+                  </span>
+                  <i className="fab fa-react text-2xl hover:text-blue-400 transition-colors"></i>
+                  <i className="fab fa-node text-2xl hover:text-green-500 transition-colors"></i>
+                  <i className="fab fa-js text-2xl hover:text-yellow-400 transition-colors"></i>
+                  <i className="fas fa-database text-2xl hover:text-teal-400 transition-colors"></i>
                 </div>
               </motion.div>
 
-              {/* Right Column */}
+              {/* --- Right Column - Hero Image --- */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="flex justify-center items-center relative">
-                <div className="relative w-64 h-64 md:w-[400px] md:h-[400px]">
-                  {/* Circle Decoration */}
-                  <div className="absolute inset-0 border-2 border-dashed border-gray-700 rounded-full animate-spin-slow"></div>
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="flex justify-center items-center relative mt-10 md:mt-0">
+                {/* Main Image Container */}
+                <div className="relative w-[320px] h-[320px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px]">
+                  {/* Spinning Glow Ring (วงแหวนหมุนช้าๆ ด้านหลัง) */}
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-500/30 via-purple-500/30 to-pink-500/30 blur-2xl animate-spin-slow opacity-70"></div>
 
-                  {/* Image Container */}
-                  <div className="absolute inset-4 bg-gradient-to-b from-blue-900/20 to-transparent rounded-full flex items-center justify-center overflow-hidden border border-gray-700/50">
+                  {/* Circle Image Wrapper */}
+                  <div className="absolute inset-4 rounded-full overflow-hidden border border-white/10 bg-slate-800/50 backdrop-blur-sm shadow-2xl flex items-center justify-center z-10 group">
                     <img
                       src={cartoonImageUrl}
-                      alt="Developer"
-                      className="w-4/5 h-4/5 object-contain drop-shadow-2xl"
+                      alt="Developer Profile"
+                      className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-in-out"
+                      style={{
+                        filter: "drop-shadow(0px 10px 20px rgba(0,0,0,0.5))",
+                      }}
                     />
                   </div>
+
+                  {/* Floating Elements (ตกแต่งรอบๆ รูป) */}
+
+                  {/* 1. Badge: Open to Work (Glassmorphism) */}
+                  <motion.div
+                    animate={{ y: [0, -10, 0] }}
+                    transition={{
+                      repeat: Infinity,
+                      duration: 4,
+                      ease: "easeInOut",
+                    }}
+                    className="absolute bottom-10 left-0 md:-left-4 z-20 bg-slate-900/80 backdrop-blur-md border border-slate-700/50 px-5 py-3 rounded-2xl shadow-xl flex items-center gap-3">
+                    <div className="relative flex h-3 w-3">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-400 uppercase font-semibold tracking-wider">
+                        Status
+                      </p>
+                      <p className="text-white text-sm font-bold">
+                        Open to Work
+                      </p>
+                    </div>
+                  </motion.div>
+
+                  {/* 2. Badge: Experience (Optional decoration right side) */}
+                  <motion.div
+                    animate={{ y: [0, 10, 0] }}
+                    transition={{
+                      repeat: Infinity,
+                      duration: 5,
+                      ease: "easeInOut",
+                      delay: 1,
+                    }}
+                    className="absolute top-20 -right-4 md:-right-8 z-0 bg-slate-900/80 backdrop-blur-md border border-slate-700/50 p-4 rounded-2xl shadow-xl hidden md:block">
+                    <i className="fas fa-code text-blue-400 text-xl"></i>
+                  </motion.div>
                 </div>
               </motion.div>
             </div>
+
+            {/* Scroll Down Indicator */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1, y: [0, 10, 0] }}
+              transition={{ delay: 1.5, duration: 2, repeat: Infinity }}
+              className="absolute bottom-6 left-1/2 -translate-x-1/2 text-gray-500 flex flex-col items-center gap-2">
+              <span className="text-xs uppercase tracking-widest">Scroll</span>
+              <i className="fas fa-chevron-down text-sm"></i>
+            </motion.div>
           </section>
         );
       };
