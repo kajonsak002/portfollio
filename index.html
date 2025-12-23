@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio - Kajonsak Leepongkul</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet" />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Kanit", "sans-serif"],
+            },
+            colors: {
+              brand: {
+                dark: "#0f172a",
+                primary: "#3b82f6",
+                accent: "#8b5cf6",
+              },
+            },
+            animation: {
+              "spin-slow": "spin 12s linear infinite",
+            },
+          },
+        },
+      };
+    </script>
+
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+
+    <style>
+      body {
+        background-color: #0f172a;
+        color: white;
+        font-family: "Kanit", sans-serif;
+        overflow-x: hidden;
+      }
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #1e293b;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #475569;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #64748b;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const { motion } = window.Motion;
+
+      // --- Components ---
+
+      // 1. Navbar
+      const Navbar = () => (
+        <nav className="fixed w-full z-50 bg-brand-dark/95 border-b border-gray-800 shadow-sm">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between h-16">
+              <span className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                PORTFOLIO
+              </span>
+              <div className="flex space-x-4">
+                {[
+                  { name: "เกี่ยวกับ", id: "hero" },
+                  { name: "ประสบการณ์", id: "experience" },
+                  { name: "ผลงาน", id: "projects" },
+                  { name: "ทักษะ", id: "skills" },
+                  { name: "ติดต่อ", id: "contact" },
+                ].map((item) => (
+                  <a
+                    key={item.name}
+                    href={`#${item.id}`}
+                    className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                    {item.name}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </nav>
+      );
+
+      // 2. Hero Section (Optimized for Performance)
+      const Hero = () => {
+        const cartoonImageUrl =
+          "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/People/Technologist.png";
+
+        return (
+          <section
+            id="hero"
+            className="min-h-screen flex items-center pt-24 pb-10 relative overflow-hidden">
+            {/* Background Blobs (Reduced Blur for Performance) */}
+            <div className="absolute top-20 right-0 w-80 h-80 bg-purple-600/10 rounded-full blur-3xl -z-10"></div>
+            <div className="absolute bottom-20 left-10 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl -z-10"></div>
+
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid md:grid-cols-2 gap-12 items-center">
+              {/* Left Column */}
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+                className="text-left w-full">
+                <h2 className="text-lg text-brand-primary font-semibold tracking-wide uppercase mb-4">
+                  <i className="fas fa-code mr-2"></i>Full Stack Developer
+                </h2>
+                <h1 className="text-5xl md:text-6xl font-extrabold text-white leading-tight mb-6">
+                  สวัสดีครับ ผมชื่อ
+                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 mt-2 leading-normal">
+                    ขจรศักดิ์ ลี้พงษ์กุล
+                  </span>
+                </h1>
+                <p className="text-lg text-gray-400 max-w-lg font-light leading-relaxed mb-8">
+                  นักศึกษาวิทยาการคอมพิวเตอร์ ผู้หลงใหลในการเขียนโค้ด
+                  มีความกระตือรือร้นที่จะสร้างสรรค์เว็บแอปพลิเคชันที่มีประสิทธิภาพ
+                  พร้อมเรียนรู้สิ่งใหม่และเติบโตในสายงาน Full Stack Development
+                </p>
+
+                <div className="flex flex-wrap gap-4">
+                  <motion.a
+                    href="#projects"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-8 py-3 bg-brand-primary hover:bg-blue-600 text-white rounded-full font-bold shadow-lg shadow-blue-500/20 transition-all flex items-center">
+                    ดูผลงาน <i className="fas fa-arrow-right ml-2 text-sm"></i>
+                  </motion.a>
+                  <a
+                    href="#contact"
+                    className="px-8 py-3 border border-gray-600 text-gray-300 rounded-full font-bold transition-all hover:bg-gray-800 hover:text-white hover:border-gray-500">
+                    ติดต่อ
+                  </a>
+                </div>
+              </motion.div>
+
+              {/* Right Column */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="flex justify-center items-center relative">
+                <div className="relative w-64 h-64 md:w-[400px] md:h-[400px]">
+                  {/* Circle Decoration */}
+                  <div className="absolute inset-0 border-2 border-dashed border-gray-700 rounded-full animate-spin-slow"></div>
+
+                  {/* Image Container */}
+                  <div className="absolute inset-4 bg-gradient-to-b from-blue-900/20 to-transparent rounded-full flex items-center justify-center overflow-hidden border border-gray-700/50">
+                    <img
+                      src={cartoonImageUrl}
+                      alt="Developer"
+                      className="w-4/5 h-4/5 object-contain drop-shadow-2xl"
+                    />
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+        );
+      };
+
+      // 3. Experience Section (Timeline)
+      const Experience = () => {
+        const timelineData = [
+          {
+            year: "2024 - ปัจจุบัน",
+            title: "Software Developer (Internship)",
+            company: "Knight Club Co., Ltd.",
+            desc: "พัฒนาเว็บแอปพลิเคชันโดยใช้ Next.js, Tailwind CSS และ NestJS ร่วมกับทีมผ่าน Git/GitLab",
+            icon: "fas fa-laptop-code",
+            color: "bg-blue-500",
+          },
+          {
+            year: "2024 (4 เดือน)",
+            title: "Software Developer (Internship)",
+            company: "บริษัท อัพบีน จำกัด",
+            desc: "พัฒนาและดูแลเว็บด้วย PHP (CodeIgniter), Bootstrap เชื่อมต่อฐานข้อมูล MySQL และทำระบบรายงาน PDF",
+            icon: "fas fa-briefcase",
+            color: "bg-purple-500",
+          },
+          {
+            year: "2020 - 2024",
+            title: "Bachelor's Degree in Computer Science",
+            company: "มหาวิทยาลัยราชภัฏเชียงราย",
+            desc: "เกรดเฉลี่ย 3.33 | โปรเจกต์จบ 'Organic Guild+' แพลตฟอร์มเกษตรอินทรีย์ครบวงจร",
+            icon: "fas fa-graduation-cap",
+            color: "bg-pink-500",
+          },
+        ];
+
+        return (
+          <section id="experience" className="py-20 bg-gray-900/30">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6">
+              <h2 className="text-3xl font-bold text-center mb-16 text-white">
+                ประสบการณ์และการศึกษา
+              </h2>
+
+              <div className="relative border-l-2 border-gray-700 ml-3 md:ml-6 space-y-12">
+                {timelineData.map((item, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                    className="relative pl-8 md:pl-12">
+                    <div
+                      className={`absolute -left-[9px] top-0 w-5 h-5 rounded-full border-4 border-brand-dark ${item.color}`}></div>
+
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-2">
+                      <h3 className="text-xl font-bold text-white">
+                        {item.title}
+                      </h3>
+                      <span className="text-xs font-mono text-blue-300 bg-blue-900/30 px-2 py-1 rounded mt-1 sm:mt-0 border border-blue-500/20">
+                        {item.year}
+                      </span>
+                    </div>
+
+                    <div className="text-gray-300 font-medium mb-2 flex items-center gap-2 text-sm">
+                      <i className={`${item.icon} text-brand-primary`}></i>{" "}
+                      {item.company}
+                    </div>
+
+                    <p className="text-gray-400 font-light leading-relaxed text-sm">
+                      {item.desc}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        );
+      };
+
+      // 4. Projects Section
+      const Projects = () => {
+        const projects = [
+          {
+            title: "ORGANIC GUILD+",
+            desc: "แพลตฟอร์มชุมชนและ Marketplace สำหรับเกษตรอินทรีย์ มีระบบจัดการข้อมูลฟาร์ม ราคากลาง และออกรายงาน",
+            tags: ["React", "Node.js", "Tailwind", "MySQL"],
+            color: "from-green-600 to-emerald-600",
+            link: "https://github.com/kajonsak002/final_project",
+          },
+          {
+            title: "WebChat Gen AI",
+            desc: "แชทบอท AI อัจฉริยะ วิเคราะห์รูปภาพและจัดหมวดหมู่ข้อความ พัฒนาด้วย Python FastAPI และ Next.js",
+            tags: ["Python", "FastAPI", "Next.js", "AI"],
+            color: "from-indigo-600 to-purple-600",
+            link: "https://github.com/kajonsak002/webchat",
+          },
+          {
+            title: "Oil Management System",
+            desc: "ระบบจัดการคลังน้ำมัน การซื้อ-ขาย และคำนวณปริมาณคงเหลือ พร้อมออกรายงาน Crystal Reports",
+            tags: ["C#", "SQL Server", "Crystal Reports"],
+            color: "from-orange-600 to-red-600",
+            link: "https://github.com/kajonsak002/Project",
+          },
+        ];
+
+        return (
+          <section id="projects" className="py-20 relative">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 className="text-3xl font-bold text-center mb-12">ผลงาน</h2>
+              <div className="grid md:grid-cols-3 gap-8">
+                {projects.map((project, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    whileHover={{ y: -5 }}
+                    className="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 hover:shadow-xl transition-all">
+                    <div
+                      className={`h-40 bg-gradient-to-br ${project.color} flex items-center justify-center`}>
+                      <i className="fas fa-layer-group text-5xl text-white/20"></i>
+                    </div>
+
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold mb-2 text-white">
+                        {project.title}
+                      </h3>
+                      <p className="text-gray-400 mb-4 text-sm font-light line-clamp-3">
+                        {project.desc}
+                      </p>
+
+                      <div className="flex gap-2 flex-wrap mb-6">
+                        {project.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="px-2 py-1 bg-gray-900 rounded text-xs text-gray-300 border border-gray-600">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center text-brand-primary hover:text-white text-sm font-medium transition-colors">
+                        ดู Source Code{" "}
+                        <i className="fas fa-arrow-right ml-2 text-xs"></i>
+                      </a>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 }}
+                className="flex justify-center mt-16">
+                <a
+                  href="https://github.com/kajonsak002?tab=repositories" // ลิงก์ไปยังหน้า Repository ทั้งหมด
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group px-8 py-3 border border-gray-600 text-gray-300 rounded-full font-medium hover:bg-gray-800 hover:text-white hover:border-gray-500 transition-all flex items-center gap-2">
+                  <i className="fab fa-github text-xl"></i>
+                  ดูผลงานทั้งหมดบน GitHub
+                  <i className="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                </a>
+              </motion.div>
+            </div>
+          </section>
+        );
+      };
+
+      // 5. Skills Section (Optimized)
+      const Skills = () => {
+        const skills = [
+          {
+            name: "JavaScript",
+            icon: "devicon-javascript-plain",
+            color: "text-yellow-400",
+          },
+          {
+            name: "TypeScript",
+            icon: "devicon-typescript-plain",
+            color: "text-blue-500",
+          },
+          {
+            name: "React",
+            icon: "devicon-react-original",
+            color: "text-cyan-400",
+          },
+          {
+            name: "Next.js",
+            icon: "devicon-nextjs-plain",
+            color: "text-white",
+          },
+          {
+            name: "Nest.js",
+            icon: "devicon-nestjs-plain",
+            color: "text-red-500",
+          },
+          {
+            name: "Node.js",
+            icon: "devicon-nodejs-plain",
+            color: "text-green-500",
+          },
+          {
+            name: "HTML5",
+            icon: "devicon-html5-plain",
+            color: "text-orange-500",
+          },
+          {
+            name: "CSS3",
+            icon: "devicon-css3-plain",
+            color: "text-blue-500",
+          },
+          { name: "PHP", icon: "devicon-php-plain", color: "text-indigo-400" },
+          {
+            name: "Tailwind CSS",
+            icon: "devicon-tailwindcss-original",
+            color: "text-teal-400",
+          },
+          {
+            name: "MySQL",
+            icon: "devicon-mysql-plain",
+            color: "text-blue-300",
+          },
+          { name: "Git", icon: "devicon-git-plain", color: "text-orange-500" },
+          {
+            name: "Python",
+            icon: "devicon-python-plain",
+            color: "text-yellow-300",
+          },
+          {
+            name: "Figma",
+            icon: "devicon-figma-plain",
+            color: "text-purple-500",
+          },
+          {
+            name: "PostgreSQL",
+            icon: "devicon-postgresql-plain",
+            color: "text-blue-500",
+          },
+        ];
+
+        return (
+          <section id="skills" className="py-20 bg-gray-800/30">
+            <div className="max-w-6xl mx-auto px-4">
+              <h2 className="text-3xl font-bold text-center mb-12">
+                เครื่องมือ
+              </h2>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+                {skills.map((skill, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    whileHover={{
+                      scale: 1.05,
+                      backgroundColor: "rgba(31, 41, 55, 0.8)",
+                    }}
+                    className="bg-gray-800 border border-gray-700 p-4 rounded-xl flex flex-col items-center justify-center hover:border-brand-primary/50 transition-all cursor-default">
+                    <i
+                      className={`${skill.icon} text-4xl mb-3 ${skill.color}`}></i>
+                    <span className="text-gray-300 text-sm font-medium">
+                      {skill.name}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        );
+      };
+
+      // 6. Contact Section
+      const Contact = () => {
+        return (
+          <section id="contact" className="py-24 relative overflow-hidden">
+            {/* Simple background accent */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-3xl -z-10"></div>
+
+            <div className="max-w-4xl mx-auto px-4 text-center">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                ช่องทางการติดต่อ
+              </h2>
+              <p className="text-gray-400 mb-10 text-lg font-light max-w-2xl mx-auto">
+                พร้อมเริ่มงานทันทีในตำแหน่ง{" "}
+                <span className="text-white font-medium">
+                  Full Stack Developer
+                </span>
+              </p>
+
+              <div className="grid md:grid-cols-3 gap-6 mb-12 text-left">
+                <div className="bg-gray-800 p-6 rounded-2xl border border-gray-700">
+                  <div className="w-10 h-10 bg-blue-900/30 rounded-full flex items-center justify-center text-blue-400 mb-4">
+                    <i className="fas fa-envelope"></i>
+                  </div>
+                  <h3 className="text-gray-300 font-bold text-sm">Email</h3>
+                  <a
+                    href="mailto:kajonsak.dev@gmail.com"
+                    className="text-sm text-gray-400 hover:text-white break-words">
+                    kajonsak.dev@gmail.com
+                  </a>
+                </div>
+
+                <div className="bg-gray-800 p-6 rounded-2xl border border-gray-700">
+                  <div className="w-10 h-10 bg-purple-900/30 rounded-full flex items-center justify-center text-purple-400 mb-4">
+                    <i className="fas fa-phone-alt"></i>
+                  </div>
+                  <h3 className="text-gray-300 font-bold text-sm">Tel</h3>
+                  <a
+                    href="tel:0651209830"
+                    className="text-sm text-gray-400 hover:text-white">
+                    065-120-9830
+                  </a>
+                </div>
+
+                <div className="bg-gray-800 p-6 rounded-2xl border border-gray-700">
+                  <div className="w-10 h-10 bg-pink-900/30 rounded-full flex items-center justify-center text-pink-400 mb-4">
+                    <i className="fas fa-map-marker-alt"></i>
+                  </div>
+                  <h3 className="text-gray-300 font-bold text-sm">Location</h3>
+                  <p className="text-sm text-gray-400">Chiang Rai, Thailand</p>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row justify-center gap-4">
+                <motion.a
+                  href="mailto:kajonsak.dev@gmail.com"
+                  whileHover={{ scale: 1.05 }}
+                  className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full font-bold text-white shadow-lg shadow-blue-500/20">
+                  <i className="fas fa-paper-plane mr-2"></i> ส่งอีเมล
+                </motion.a>
+
+                <motion.a
+                  href="./CV_kajonsak_leepongkul.pdf"
+                  target="_blank"
+                  whileHover={{ scale: 1.05, backgroundColor: "#1f2937" }}
+                  className="px-8 py-3 border border-gray-600 text-gray-300 rounded-full font-bold flex items-center justify-center gap-2">
+                  <i className="fas fa-eye"></i> CV
+                </motion.a>
+              </div>
+
+              <div className="mt-12 flex justify-center space-x-8 text-2xl text-gray-500">
+                <a
+                  href="https://github.com/kajonsak002"
+                  target="_blank"
+                  className="hover:text-white transition-colors">
+                  <i className="fab fa-github"></i>
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/kajonsakdev"
+                  target="_blank"
+                  className="hover:text-blue-400 transition-colors">
+                  <i className="fab fa-linkedin"></i>
+                </a>
+                <a
+                  href="https://www.facebook.com/kajonsak.leepongkul"
+                  target="_blank"
+                  className="hover:text-blue-600 transition-colors">
+                  <i className="fab fa-facebook"></i>
+                </a>
+              </div>
+
+              <p className="mt-8 text-xs text-gray-600">
+                © 2024 Kajonsak Leepongkul. All rights reserved.
+              </p>
+            </div>
+          </section>
+        );
+      };
+
+      // App & Render
+      const App = () => (
+        <div className="min-h-screen">
+          <Navbar />
+          <main>
+            <Hero />
+            <Experience />
+            <Projects />
+            <Skills />
+            <Contact />
+          </main>
+        </div>
+      );
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>
